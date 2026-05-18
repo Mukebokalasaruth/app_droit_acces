@@ -12,16 +12,18 @@ from models.critere_paiement import CriterePaiement
 from flasgger import Swagger
 
 from controllers.etudiant_controller import EtudiantController, etudiant_bp
+from controllers.comptable_controller import ComptableController, comptable_bp
 
 app = Flask(__name__)
 
 Swagger(app)
 app.register_blueprint(etudiant_bp, url_prefix='/etudiant')
+app.register_blueprint(comptable_bp, url_prefix='/comptable')
 
 # Configuration MySQL
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/droit_acces'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+    
 # Initialisation
 db.init_app(app)
 
