@@ -77,3 +77,97 @@ class EtudiantController:
                 "success": False,
                 "message": "erreur serveur"
             }), 500
+        
+    # UPLOAD PREUVE PAIEMENT
+    # ==========================
+    @staticmethod
+    @etudiant_bp.route(
+        '/upload-preuve',
+        methods=['POST']
+    )
+    @swag_from({
+        'tags': [
+            'Etudiant'
+        ],
+        'consumes': [
+            'multipart/form-data'
+        ],
+        'parameters': [
+            {
+                'name': 'file',
+                'in': 'formData',
+                'type': 'file',
+                'required': True,
+                'description':
+                    'Capture preuve paiement'
+            },
+            {
+                'name': 'idEtudiant',
+                'in': 'formData',
+                'type': 'integer',
+                'required': True,
+                'description':
+                    'ID étudiant'
+            }
+        ],
+        'responses': {
+            201: {
+                'description':
+                    'Preuve envoyée avec succès'
+            },
+            400: {
+                'description':
+                    'Erreur validation'
+            },
+            500: {
+                'description':
+                    'Erreur serveur'
+            }
+        }
+    })
+    def upload_preuve():
+
+        try:
+
+            # récupérer fichier
+            file = request.files.get(
+                'file'
+            )
+
+            # récupérer id étudiant
+            id_etudiant = request.form.get(
+                'idEtudiant'
+            )
+
+            # appel service
+            result = (
+                EtudiantService
+                .upload_preuve_paiement(
+                    file,
+                    id_etudiant
+                )
+            )
+
+            return jsonify({
+                "success": True,
+                "message":
+                    "Preuve de paiement envoyée avec succès",
+                "data":
+                    result
+            }), 201
+
+        except ValueError as e:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    str(e)
+            }), 400
+
+        except Exception as e:
+
+            return jsonify({
+                "success": False,
+                "message":
+                    str(e)
+            }), 500

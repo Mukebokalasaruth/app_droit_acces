@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
-
+import os
 from config.database import db
 
 from models.promotion import Promotion
@@ -21,6 +21,11 @@ Swagger(app)
 app.register_blueprint(etudiant_bp, url_prefix='/etudiant')
 app.register_blueprint(comptable_bp, url_prefix='/comptable')
 app.register_blueprint(surveillant_bp, url_prefix='/surveillant')
+
+
+# Configuration pour les fichiers téléchargés
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5 MB
 
 # Configuration MySQL
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/droit_acces'
