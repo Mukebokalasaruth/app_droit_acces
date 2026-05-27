@@ -5,7 +5,7 @@ class CriterePaiement(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
-    montant = db.Column(db.Integer, nullable=False)
+    montant = db.Column(db.Float, nullable=False)
 
     session = db.Column(db.String(50), nullable=False)
 

@@ -1,8 +1,8 @@
-"""Création des tables
+"""add date soumission to preuve paiement
 
-Revision ID: 8e99b2808c7d
+Revision ID: fa6044f402a6
 Revises: 
-Create Date: 2026-05-14 14:30:46.312797
+Create Date: 2026-05-25 08:42:28.930259
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8e99b2808c7d'
+revision = 'fa6044f402a6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,9 @@ def upgrade():
     op.create_table('comptable',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('login', sa.String(length=50), nullable=False),
+    sa.Column('nom', sa.String(length=50), nullable=False),
+    sa.Column('prenom', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('promotion',
@@ -31,6 +34,8 @@ def upgrade():
     op.create_table('surveillant',
     sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('login', sa.String(length=50), nullable=False),
+    sa.Column('prenom', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('criterePaiement',
@@ -59,6 +64,7 @@ def upgrade():
     sa.Column('statutValidation', sa.Boolean(), nullable=True),
     sa.Column('motifRejet', sa.Text(), nullable=True),
     sa.Column('idEtudiant', sa.Integer(), nullable=False),
+    sa.Column('dateSoumission', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['idEtudiant'], ['etudiant.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

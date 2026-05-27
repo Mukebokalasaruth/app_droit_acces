@@ -14,6 +14,8 @@ from flasgger import Swagger
 from controllers.etudiant_controller import EtudiantController, etudiant_bp
 from controllers.comptable_controller import ComptableController, comptable_bp
 from controllers.surveillant_controller import SurveillantController, surveillant_bp
+from controllers.critere_controller import CritereController, critere_bp
+
 
 app = Flask(__name__)
 
@@ -21,6 +23,7 @@ Swagger(app)
 app.register_blueprint(etudiant_bp, url_prefix='/etudiant')
 app.register_blueprint(comptable_bp, url_prefix='/comptable')
 app.register_blueprint(surveillant_bp, url_prefix='/surveillant')
+app.register_blueprint(critere_bp, url_prefix='/critere')
 
 
 # Configuration pour les fichiers téléchargés

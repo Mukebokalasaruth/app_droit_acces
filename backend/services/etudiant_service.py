@@ -120,3 +120,48 @@ class EtudiantService:
             "cheminCapture":
                 preuve_saved.cheminCapture
         }
+    # CONSULTER ETAT VALIDATION
+    # ==========================
+    @staticmethod
+    def consulter_etat_validation(
+        id_etudiant
+    ):
+
+        preuve = (
+            EtudiantRepository
+            .consulter_etat_validation(
+                id_etudiant
+            )
+        )
+
+        if not preuve:
+
+            raise Exception(
+                "Aucune preuve de paiement trouvée"
+            )
+
+        # Déterminer l'état
+        if preuve.statutValidation is True:
+            etat = "Validé"
+
+        elif preuve.statutValidation is False:
+            etat = "Rejeté"
+
+        else:
+            etat = "En attente"
+
+        return {
+
+            "idPreuve":
+                preuve.id,
+
+            "etat":
+                etat,
+
+            "motifRejet":
+                preuve.motifRejet,
+
+            "capture":
+                preuve.cheminCapture
+        }
+        
