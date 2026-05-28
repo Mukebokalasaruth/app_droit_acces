@@ -1,4 +1,4 @@
-from backend.models.etudiant import Etudiant
+from models.etudiant import Etudiant
 from models.surveillant import Surveillant
 from config.database import db
 from models.preuve_paiement import PreuvePaiement
@@ -54,4 +54,31 @@ class SurveillantRepository:
         )
 
         return preuve
+
+    # ETUDIANTS VALIDES PAR PROMO
+    
+    @staticmethod
+    def get_etudiants_valides_by_promotion(
+        id_promotion
+    ):
+
+        result = (
+            Etudiant.query
+            .join(
+                PreuvePaiement,
+                Etudiant.id ==
+                PreuvePaiement.idEtudiant
+            )
+            .filter(
+                Etudiant.idPromotion
+                == id_promotion,
+
+                PreuvePaiement
+                .statutValidation
+                == True
+            )
+            .all()
+        )
+
+        return result
     

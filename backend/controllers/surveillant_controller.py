@@ -76,3 +76,126 @@ class SurveillantController:
                 "success": False,
                 "message": "erreur serveur"
             }), 500
+    @staticmethod
+    @surveillant_bp.route("/verifier-droit-acces/<string:matricule>",  methods=["GET"]) 
+    @swag_from({
+        'tags': ['Droit d\'accès'],
+        'description': 'Vérifier droit d\'accès étudiant',
+        'parameters': [
+            {
+                'name': 'matricule',
+                'in': 'path',
+                'type': 'string',
+                'required': True,
+                'description': 'Matricule de l\'étudiant',
+                'example': '2023-12345'
+            }
+        ],
+        'responses': {
+            200: {
+                'description': 'Vérification réussie'
+            },
+            400: {
+                'description': 'Erreur de validation'
+            },
+            500: {
+                'description': 'Erreur serveur'
+            }
+        }
+    })  
+    def verifier_droit_acces(matricule):
+        try:
+
+            result = (
+                SurveillantService
+                .verifier_droit_acces(
+                    matricule
+                )
+            )
+
+            return jsonify({
+
+                "success": True,
+
+                "data":
+                    result
+
+            }), 200
+
+        except Exception as e:
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    str(e)
+
+            }), 400
+        
+
+    # VERIFIER PAR PROMOTION
+
+    @staticmethod
+    @surveillant_bp.route('/verifier-par-promotion/<int:id_promotion>', methods=['GET'])    
+    @swag_from({
+        'tags': ['Surveillant'],
+        'description':
+            "Lister les étudiants validés d'une promotion",
+
+        'parameters': [
+            {
+                'name':
+                    'id_promotion',
+
+                'in':
+                    'path',
+
+                'required':
+                    True,
+
+                'type':
+                    'integer',
+
+                'example':
+                    1
+            }
+        ],
+
+        'responses': {
+
+            200: {
+                'description':
+                    'Liste des étudiants validés'
+            }
+        }
+    })
+    def verifier_par_promotion(id_promotion):
+        try:
+
+            result = (
+                SurveillantService
+                .verifier_par_promotion(
+                    id_promotion
+                )
+            )
+
+            return jsonify({
+
+                "success": True,
+
+                "data":
+                    result
+
+            }), 200
+
+        except Exception as e:
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    str(e)
+
+            }), 400

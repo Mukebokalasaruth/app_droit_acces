@@ -99,5 +99,50 @@ class SurveillantService:
         }
         
         
+    # LISTE VALIDES PAR PROMOTION
+    @staticmethod
+    def verifier_par_promotion(
+        id_promotion
+    ):
+
+        etudiants = (
+            SurveillantRepository
+            .get_etudiants_valides_by_promotion(
+                id_promotion
+            )
+        )
+
+        if not etudiants:
+
+            return []
+
+        result = []
+
+        for etudiant in etudiants:
+
+            result.append({
+
+                "id":
+                    etudiant.id,
+
+                "nom":
+                    etudiant.nom,
+
+                "postnom":
+                    etudiant.postnom,
+
+                "prenom":
+                    etudiant.prenom,
+
+                "matricule":
+                    etudiant.matricule,
+
+                "autorisation":
+                    True
+            })
+
+        return result
+        
+        
 
     
