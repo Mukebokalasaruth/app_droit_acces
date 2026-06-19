@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixer Critère de Paiement</title>
+    <link rel="stylesheet" href="../style/fixerCritere.css">
+</head>
+<body>
+    <div class="container">
+        <form id="critereForm" class="critere-form">
+            <h2>Fixer Critère de Paiement</h2>
+
+            <label>Promotion</label>
+            <select id="idPromotion" required>
+                
+            </select>
+
+            <label>Montant (USD)</label>
+            <input type="number" id="montant" placeholder="Ex : 50" required >
+
+            <label>Session</label>
+            <select id="session" required >
+                <option value="">Sélectionner une session</option>
+                <option value="Premiere session">Première session</option>
+                <option value="Deuxieme session">Deuxième session</option>
+            </select>
+
+            <button type="submit">Enregistrer</button>
+
+            <p id="message"></p>
+
+        </form>
+
+    </div>
+
+    <script src="../script/fixerCritere.js"></script>
+
+</body>
+
+</html>

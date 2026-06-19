@@ -11,7 +11,7 @@ class EtudiantController:
     @staticmethod
     @etudiant_bp.route('/login', methods=['POST'])
     @swag_from({
-        'tags': ['Authentification'],
+        'tags': ['Etudiant'],
         'description': 'Connexion étudiant',
         'parameters': [
             {
@@ -81,17 +81,10 @@ class EtudiantController:
     # UPLOAD PREUVE PAIEMENT
     # ==========================
     @staticmethod
-    @etudiant_bp.route(
-        '/upload-preuve',
-        methods=['POST']
-    )
+    @etudiant_bp.route('/upload-preuve', methods=['POST'])
     @swag_from({
-        'tags': [
-            'Etudiant'
-        ],
-        'consumes': [
-            'multipart/form-data'
-        ],
+        'tags': ['Etudiant'],
+        'consumes': ['multipart/form-data'],
         'parameters': [
             {
                 'name': 'file',

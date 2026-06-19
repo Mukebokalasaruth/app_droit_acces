@@ -12,7 +12,7 @@ class SurveillantController:
     @staticmethod
     @surveillant_bp.route('/login', methods=['POST'])
     @swag_from({
-        'tags': ['Authentification'],
+        'tags': ['Surveillant'],
         'description': 'Connexion surveillant',
         'parameters': [
             {
@@ -79,7 +79,7 @@ class SurveillantController:
     @staticmethod
     @surveillant_bp.route("/verifier-droit-acces/<string:matricule>",  methods=["GET"]) 
     @swag_from({
-        'tags': ['Droit d\'accès'],
+        'tags': ['Surveillant'],
         'description': 'Vérifier droit d\'accès étudiant',
         'parameters': [
             {

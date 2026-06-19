@@ -26,12 +26,9 @@ class ComptableController:
     # LOGIN COMPTABLE
     # ==========================
     @staticmethod
-    @comptable_bp.route(
-        '/login',
-        methods=['POST']
-    )
+    @comptable_bp.route('/login', methods=['POST'])
     @swag_from({
-        'tags': ['Authentification'],
+        'tags': ['Comptable'],
         'description': 'Connexion comptable',
 
         'parameters': [
@@ -148,10 +145,7 @@ class ComptableController:
     # LISTE PROMOTIONS
     # ==========================
     @staticmethod
-    @comptable_bp.route(
-        '/promotions',
-        methods=['GET']
-    )
+    @comptable_bp.route('/promotions',methods=['GET'])
     @swag_from({
         'tags': ['Comptable'],
         'description':

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 import os
 from config.database import db
 
@@ -18,7 +19,7 @@ from controllers.critere_controller import CritereController, critere_bp
 
 
 app = Flask(__name__)
-
+CORS(app)
 Swagger(app)
 app.register_blueprint(etudiant_bp, url_prefix='/etudiant')
 app.register_blueprint(comptable_bp, url_prefix='/comptable')
