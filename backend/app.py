@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_migrate import Migrate
 from flask_cors import CORS
 import os
@@ -10,6 +10,7 @@ from models.preuve_paiement import PreuvePaiement
 from models.comptable import Comptable
 from models.surveillant import Surveillant
 from models.critere_paiement import CriterePaiement
+from models.acces import Acces
 from flasgger import Swagger
 
 from controllers.etudiant_controller import EtudiantController, etudiant_bp
@@ -45,6 +46,11 @@ migrate = Migrate(app, db)
 @app.route("/")
 def home():
     return "Application OK"
+
+
+@app.route("/uploads/<path:filename>")
+def uploaded_file(filename):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
 
 if __name__ == "__main__":

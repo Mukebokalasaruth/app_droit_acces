@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Espace Comptable</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { ink: "#172033", brand: "#0f766e", gold: "#d89b22" }, boxShadow: { soft: "0 20px 60px rgba(15, 23, 42, .10)" } } } }</script>
 </head>
-<body>
-    <h1>Bienvenue <span id="prenom"></span></h1>
-    <a href="authentification.html">Se connecter</a><br>
-    <a href="fixerCritere.html">Fixer les critères</a><br>
-    <a href="consulterListePaiement.html">Consulter la liste de preuves de paiement</a><br>
-    
+<body class="min-h-screen bg-[#f5f7fb] text-ink">
+    <div class="mx-auto max-w-6xl px-6 py-8">
+        <header class="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-white px-6 py-4 shadow-soft ring-1 ring-slate-200">
+            <div class="flex items-center gap-3">
+                <img class="h-11 w-11 rounded-lg bg-white object-contain p-1 ring-1 ring-slate-200" src="../../image/logo.jpeg" alt="Logo Droit d'acces">
+                <div>
+                    <p class="text-xs uppercase tracking-[.18em] text-slate-500">Console comptable</p>
+                    <h1 class="text-xl font-bold">Bienvenue <span id="prenom"></span></h1>
+                </div>
+            </div>
+            <a class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50" href="authentification.html">Changer de compte</a>
+        </header>
+        <section class="mt-8 grid gap-6 lg:grid-cols-2">
+            <a class="rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl" href="fixerCritere.html">
+                <p class="text-sm font-semibold uppercase tracking-[.18em] text-gold">Parametrage</p>
+                <h2 class="mt-3 text-3xl font-bold">Fixer les criteres</h2>
+                <p class="mt-3 text-slate-600">Definissez le montant attendu par promotion et par session.</p>
+            </a>
+            <a class="rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl" href="consulterListePaiement.html">
+                <p class="text-sm font-semibold uppercase tracking-[.18em] text-brand">Validation</p>
+                <h2 class="mt-3 text-3xl font-bold">Consulter les preuves</h2>
+                <p class="mt-3 text-slate-600">Filtrez par promotion, approuvez les paiements ou indiquez un motif de rejet.</p>
+            </a>
+            <div class="rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl">
+                <p class="text-sm font-semibold uppercase tracking-[.18em] text-red-600">Registre journalier</p>
+                <h2 class="mt-3 text-3xl font-bold">Vider les accès du jour</h2>
+                <p class="mt-3 text-slate-600">Supprimez les accès enregistrés pour la journée.</p>
+                <button id="clearAccessBtn" class="mt-6 h-12 rounded-lg bg-red-600 px-8 font-semibold text-white shadow-lg shadow-red-900/15 hover:bg-red-700">Vider les accès du jour</button>
+                <p id="clearAccessStatus" class="mt-3 text-sm text-slate-600"></p>
+            </div>
+        </section>
+    </div>
     <script src="../script/acceuil.js"></script>
 </body>
 </html>

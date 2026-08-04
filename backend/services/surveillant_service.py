@@ -1,4 +1,5 @@
 from repositories.surveillant_repository import SurveillantRepository
+from repositories.acces_repository import AccesRepository
 
 class SurveillantService:
 
@@ -61,7 +62,7 @@ class SurveillantService:
             autorisation = True
 
 
-        elif preuve.statutValidation is False:
+        elif preuve.statutValidation is False and preuve.motifRejet:
 
             etat = "Rejeté"
             autorisation = False
@@ -72,6 +73,19 @@ class SurveillantService:
             etat = "En attente"
             autorisation = False
 
+        # Enregistrer l'entrée si l'étudiant est autorisé
+        if autorisation:
+            acces = AccesRepository.get_acces_by_matricule(matricule)
+            if acces:
+                message_entree = "Étudiant déjà entré aujourd'hui"
+                deja_entree = True
+            else:
+                AccesRepository.ajouter_matricule(matricule)
+                message_entree = "Entrée enregistrée"
+                deja_entree = False
+        else:
+            message_entree = "Accès non autorisé"
+            deja_entree = False
 
         return {
 
@@ -95,10 +109,15 @@ class SurveillantService:
 
             "motifRejet":
                 preuve.motifRejet
-                if preuve else None
+                if preuve else None,
+
+            "dejaEntree":
+                deja_entree,
+
+            "messageEntree":
+                message_entree
         }
-        
-        
+    
     # LISTE VALIDES PAR PROMOTION
     @staticmethod
     def verifier_par_promotion(

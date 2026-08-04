@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixer Critère de Paiement</title>
-    <link rel="stylesheet" href="../style/fixerCritere.css">
+    <title>Fixer Critere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { ink: "#172033", brand: "#0f766e", gold: "#d89b22" }, boxShadow: { soft: "0 20px 60px rgba(15, 23, 42, .10)" } } } }</script>
 </head>
-<body>
-    <div class="container">
-        <form id="critereForm" class="critere-form">
-            <h2>Fixer Critère de Paiement</h2>
-
-            <label>Promotion</label>
-            <select id="idPromotion" required>
-                
-            </select>
-
-            <label>Montant (USD)</label>
-            <input type="number" id="montant" placeholder="Ex : 50" required >
-
-            <label>Session</label>
-            <select id="session" required >
-                <option value="">Sélectionner une session</option>
-                <option value="Premiere session">Première session</option>
-                <option value="Deuxieme session">Deuxième session</option>
-            </select>
-
-            <button type="submit">Enregistrer</button>
-
-            <p id="message"></p>
-
+<body class="min-h-screen bg-[#f5f7fb] text-ink">
+    <main class="mx-auto max-w-4xl px-6 py-8">
+        <a class="text-sm font-semibold text-brand hover:text-teal-900" href="acceuil.html">Retour au tableau de bord</a>
+        <form id="critereForm" class="mt-6 rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200">
+            <p class="text-sm font-semibold uppercase tracking-[.18em] text-gold">Configuration</p>
+            <h1 class="mt-3 text-3xl font-bold">Fixer un critere de paiement</h1>
+            <div class="mt-8 grid gap-5 sm:grid-cols-2">
+                <label class="block sm:col-span-2">
+                    <span class="text-sm font-semibold text-slate-700">Promotion</span>
+                    <select class="mt-2 h-12 w-full rounded-lg border border-slate-300 bg-white px-4 outline-none focus:border-brand focus:ring-4 focus:ring-teal-100" id="idPromotion" required></select>
+                </label>
+                <label class="block">
+                    <span class="text-sm font-semibold text-slate-700">Montant ($)</span>
+                    <input class="mt-2 h-12 w-full rounded-lg border border-slate-300 px-4 outline-none focus:border-brand focus:ring-4 focus:ring-teal-100" type="number" id="montant" placeholder="Ex : 50000" required>
+                </label>
+                <label class="block">
+                    <span class="text-sm font-semibold text-slate-700">Session</span>
+                    <select class="mt-2 h-12 w-full rounded-lg border border-slate-300 bg-white px-4 outline-none focus:border-brand focus:ring-4 focus:ring-teal-100" id="session" required>
+                        <option value="">Selectionner un session</option>
+                        <option value="Premiere session">Premiere session</option>
+                        <option value="Deuxieme session">Deuxieme session</option>
+                    </select>
+                </label>
+            </div>
+            <button class="mt-8 h-12 rounded-lg bg-brand px-8 font-semibold text-white shadow-lg shadow-teal-900/15 hover:bg-teal-800" type="submit">Enregistrer</button>
+            <p id="message" class="mt-5 min-h-6 text-sm font-semibold"></p>
         </form>
-
-    </div>
-
+    </main>
     <script src="../script/fixerCritere.js"></script>
-
 </body>
-
 </html>

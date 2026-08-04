@@ -10,6 +10,10 @@ from repositories.preuvePaiement_repository import (
     PreuvePaiementRepository
 )
 
+from repositories.acces_repository import (
+    AccesRepository
+)
+
 
 class ComptableService:
 
@@ -50,6 +54,10 @@ class ComptableService:
             return comptable
 
         return None
+
+    @staticmethod
+    def vider_acces():
+        return AccesRepository.supprimer_tous_les_matricules()
 
 
     # ==========================
@@ -132,7 +140,10 @@ class ComptableService:
                     ),
 
                 "statutValidation":
-                    preuve.statutValidation
+                    preuve.statutValidation,
+
+                "motifRejet":
+                    preuve.motifRejet
             })
 
         return result

@@ -134,6 +134,34 @@ class SurveillantController:
             }), 400
         
 
+    @staticmethod
+    @surveillant_bp.route('/vider-acces', methods=['POST'])
+    @swag_from({
+        'tags': ['Surveillant'],
+        'description': 'Vider le registre des matricules entrés aujourd’hui',
+        'responses': {
+            200: {
+                'description': 'Registre vidé avec succès'
+            },
+            500: {
+                'description': 'Erreur serveur'
+            }
+        }
+    })
+    def vider_acces():
+        try:
+            nombre = SurveillantService.vider_acces()
+            return jsonify({
+                "success": True,
+                "message": f"{nombre} accès(s) supprimé(s) avec succès"
+            }), 200
+        except Exception as e:
+            return jsonify({
+                "success": False,
+                "message": str(e)
+            }), 500
+        
+
     # VERIFIER PAR PROMOTION
 
     @staticmethod

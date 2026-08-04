@@ -19,7 +19,8 @@ class PreuvePaiement(db.Model):
 
     statutValidation = db.Column(
         db.Boolean,
-        default=False
+        default=None,
+        nullable=True
     )
 
     motifRejet = db.Column(

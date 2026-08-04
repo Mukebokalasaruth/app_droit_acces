@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etat de validation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { ink: "#172033", brand: "#0f766e", gold: "#d89b22" }, boxShadow: { soft: "0 20px 60px rgba(15, 23, 42, .10)" } } } }</script>
+    <style>
+        @media print {
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+            #printActions,
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            #etatCard {
+                page-break-inside: avoid;
+            }
+        }
+
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#f5f7fb] text-ink">
+    <main class="mx-auto max-w-4xl px-6 py-8">
+        <div id="printHeader" class="print-only hidden rounded-lg border border-slate-200 bg-white p-6 shadow-soft mb-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <img src="../../image/logo.jpeg" alt="Logo" class="h-20 w-auto" />
+                <div>
+                    <p class="text-sm uppercase tracking-[.18em] text-slate-500">Droit d'accès étudiant</p>
+                    <h1 class="mt-1 text-2xl font-bold text-ink">Document imprimé</h1>
+                </div>
+            </div>
+        </div>
+        <a class="text-sm font-semibold text-brand hover:text-teal-900" href="acceuil.html">Retour au tableau de bord</a>
+        <section class="mt-6 rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200">
+            <p class="text-sm font-semibold uppercase tracking-[.18em] text-gold">Suivi administratif</p>
+            <h1 class="mt-3 text-3xl font-bold">Etat de validation</h1>
+            <div id="etatCard" class="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-6">
+                <p class="text-slate-600">Chargement de votre statut...</p>
+            </div>
+            <div id="printActions" class="mt-5 hidden">
+                <button id="printAccessBtn" class="rounded-lg bg-brand px-5 py-3 text-sm font-bold text-white shadow-lg shadow-teal-900/15 transition hover:bg-teal-800" type="button">
+                    Imprimer le droit d'acces
+                </button>
+            </div>
+            <p id="message" class="mt-5 min-h-6 text-sm font-semibold"></p>
+        </section>
+        <section class="mt-6 rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[.18em] text-gold">Historique</p>
+                    <h2 class="mt-2 text-2xl font-bold">Preuves rejetees</h2>
+                </div>
+            </div>
+            <div id="rejectedProofs" class="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-5">
+                <p class="text-slate-600">Chargement des preuves rejetees...</p>
+            </div>
+        </section>
+    </main>
+    <script src="../script/consulterEtat.js"></script>
+</body>
+</html>

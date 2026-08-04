@@ -144,7 +144,7 @@ class EtudiantService:
         if preuve.statutValidation is True:
             etat = "Validé"
 
-        elif preuve.statutValidation is False:
+        elif preuve.statutValidation is False and preuve.motifRejet:
             etat = "Rejeté"
 
         else:
@@ -164,4 +164,36 @@ class EtudiantService:
             "capture":
                 preuve.cheminCapture
         }
+
+    @staticmethod
+    def get_preuves_rejetees(
+        id_etudiant
+    ):
+
+        preuves = (
+            EtudiantRepository
+            .get_preuves_rejetees(
+                id_etudiant
+            )
+        )
+
+        return [
+            {
+                "idPreuve":
+                    preuve.id,
+
+                "motifRejet":
+                    preuve.motifRejet,
+
+                "capture":
+                    preuve.cheminCapture,
+
+                "dateSoumission":
+                    preuve.dateSoumission.strftime(
+                        "%d/%m/%Y"
+                    )
+                    if preuve.dateSoumission else None
+            }
+            for preuve in preuves
+        ]
         

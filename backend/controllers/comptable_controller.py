@@ -195,6 +195,53 @@ class ComptableController:
 
 
     # ==========================
+    # VIDAGE ACCES JOURNALIER
+    # ==========================
+    @staticmethod
+    @comptable_bp.route('/vider-acces', methods=['POST'])
+    @swag_from({
+        'tags': ['Comptable'],
+        'description': 'Vider les accès enregistrés pour la journée',
+        'responses': {
+            200: {
+                'description': 'Registre vidé avec succès'
+            },
+            500: {
+                'description': 'Erreur serveur'
+            }
+        }
+    })
+    def vider_acces():
+
+        try:
+
+            nombre = (
+                ComptableService
+                .vider_acces()
+            )
+
+            return jsonify({
+
+                "success": True,
+
+                "message":
+                    f"{nombre} accès(s) supprimé(s) avec succès"
+
+            }), 200
+
+        except Exception as e:
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    str(e)
+
+            }), 500
+
+
+    # ==========================
     # PREUVES PAR PROMOTION
     # ==========================
     @staticmethod

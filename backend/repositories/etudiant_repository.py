@@ -35,4 +35,25 @@ class EtudiantRepository:
 
         return preuve
 
+    @staticmethod
+    def get_preuves_rejetees(
+        id_etudiant
+    ):
+
+        preuves = (
+            PreuvePaiement.query
+            .filter(
+                PreuvePaiement.idEtudiant == id_etudiant,
+                PreuvePaiement.statutValidation.is_(False),
+                PreuvePaiement.motifRejet.isnot(None),
+                PreuvePaiement.motifRejet != ""
+            )
+            .order_by(
+                PreuvePaiement.dateSoumission.desc()
+            )
+            .all()
+        )
+
+        return preuves
+
     

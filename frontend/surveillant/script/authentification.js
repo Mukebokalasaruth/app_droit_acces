@@ -7,24 +7,21 @@ function setMessage(text, type = "info") {
     message.className = `mt-5 min-h-6 text-sm font-semibold ${colors[type]}`;
 }
 
-form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const login = document.getElementById("login").value;
     const password = document.getElementById("password").value;
 
     try {
-        const response = await fetch("http://localhost:5000/comptable/login", {
+        const response = await fetch("http://127.0.0.1:5000/surveillant/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ login, password })
         });
-
         const data = await response.json();
-
         if (data.success) {
+            localStorage.setItem("surveillant", JSON.stringify(data.data));
             setMessage("Connexion reussie", "success");
-            localStorage.setItem("comptable", JSON.stringify(data.data));
             window.location.href = "acceuil.html";
         } else {
             setMessage(data.message, "error");

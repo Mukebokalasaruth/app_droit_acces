@@ -24,7 +24,9 @@ class PreuvePaiementRepository:
         preuve_paiement = (
             PreuvePaiement(
                 idEtudiant=id_etudiant,
-                cheminCapture=chemin_capture
+                cheminCapture=chemin_capture,
+                statutValidation=None,
+                motifRejet=None
             )
         )
 

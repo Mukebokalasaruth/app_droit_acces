@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Surveillant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { ink: "#172033", brand: "#0f766e", gold: "#d89b22" }, boxShadow: { soft: "0 20px 60px rgba(15, 23, 42, .10)" } } } }</script>
+</head>
+<body class="min-h-screen bg-[#f5f7fb] text-ink">
+    <div class="mx-auto max-w-6xl px-6 py-8">
+        <header class="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-white px-6 py-4 shadow-soft ring-1 ring-slate-200">
+            <div class="flex items-center gap-3">
+                <img class="h-11 w-11 rounded-lg bg-white object-contain p-1 ring-1 ring-slate-200" src="../../image/logo.jpeg" alt="Logo Droit d'acces">
+                <div>
+                    <p class="text-xs uppercase tracking-[.18em] text-slate-500">Espace surveillant</p>
+                    <h1 class="text-xl font-bold">Bienvenue <span id="prenom"></span></h1>
+                </div>
+            </div>
+            <a class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold hover:bg-slate-50" href="authentification.html">Changer de compte</a>
+        </header>
+        <section class="mt-8 grid gap-6 lg:grid-cols-2">
+            <a class="rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl" href="verifierAcces.html">
+                <p class="text-sm font-semibold uppercase tracking-[.18em] text-brand">Verification directe</p>
+                <h2 class="mt-3 text-3xl font-bold">Verifier par matricule</h2>
+                <p class="mt-3 text-slate-600">Controlez instantanement si l'etudiant est autorise.</p>
+            </a>
+            <a class="rounded-lg bg-white p-8 shadow-soft ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl" href="verifierPromotion.html">
+                <p class="text-sm font-semibold uppercase tracking-[.18em] text-gold">Liste autorisee</p>
+                <h2 class="mt-3 text-3xl font-bold">Verifier par promotion</h2>
+                <p class="mt-3 text-slate-600">Affichez les etudiants valides d'une promotion.</p>
+            </a>
+        </section>
+    </div>
+    <script src="../script/acceuil.js"></script>
+</body>
+</html>

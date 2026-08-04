@@ -205,3 +205,41 @@ class EtudiantController:
                     str(e)
 
             }), 400
+
+    @staticmethod
+    @etudiant_bp.route(
+        '/preuves-rejetees/<int:id_etudiant>',
+        methods=['GET']
+    )
+    def get_preuves_rejetees(
+        id_etudiant
+    ):
+
+        try:
+
+            result = (
+                EtudiantService
+                .get_preuves_rejetees(
+                    id_etudiant
+                )
+            )
+
+            return jsonify({
+
+                "success": True,
+
+                "data":
+                    result
+
+            }), 200
+
+        except Exception as e:
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    str(e)
+
+            }), 400
